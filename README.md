@@ -12,9 +12,12 @@ B选择 通过gunicorn配置文件启动(转发本地端口，自定义)
 
 C选择 通过nginx配置文件启动(自定义的配置文件更加灵活)，常用
 
-D选择 通过gunicorn + nginx启动项目(具体为啥要这么干可以google，这里就不说了)，就是这个demo啦，实际上就是app -> gunicorn转发 -> nginx
+D选择 通过gunicorn + nginx启动项目(具体为啥要这么干可以google，这里就不说了)，就是这个demo啦
+
+实际上就是app -> gunicorn转发 -> nginx
 
 参考 https://www.cnblogs.com/xmxj0707/p/8452881.html
+
 
 
 
@@ -42,6 +45,7 @@ echo_supervisord_conf > supervisor.conf # 导出配置模板 (可以自定义路
 然后在supervisor.conf 添加内容来开启 gunicorn
 
 启动命令 supervisord -c supervisor.conf
+
 
 
 
@@ -78,7 +82,7 @@ supervisorctl start all #启动所有的程序
   
   最后访问 127.0.0.1:5001 就可以看到 app的服务了  
   
-  F12可以发现服务器来自Nginx (如果关闭 nginx,可以发现服务来自 gunicorn)
+  F12可以发现服务器来自Nginx  如果关闭 nginx,可以发现服务来自 gunicorn
   
   
   
