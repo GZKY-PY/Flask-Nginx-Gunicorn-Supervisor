@@ -1,5 +1,6 @@
 # Flask-Nginx-Gunicorn-Supervisor
 
+
 sudo apt-get install nginx (如果本地有的话可忽略，kali就自带)
 
 pip3 install flask, gunicorn, supervisor
@@ -11,17 +12,21 @@ B选择 通过gunicorn配置文件启动(转发本地端口，自定义)
 
 C选择 通过nginx配置文件启动(自定义的配置文件更加灵活)，常用
 
-D选择 通过gunicorn + nginx启动项目(具体为啥要这么干可以google，这里就不说了)，就是这个demo啦
+D选择 通过gunicorn + nginx启动项目(具体为啥要这么干可以google，这里就不说了)，就是这个demo啦，实际上就是app -> gunicorn转发 -> nginx
 
 参考 https://www.cnblogs.com/xmxj0707/p/8452881.html
 
-supervisor是个管理进程的库，有命令行 和 web界面
 
+
+
+supervisor是个管理进程的库，有命令行 和 web界面
 
 1 启动nginx (配置文件转发端口 和 gunicorn配置的端口一致)，可以单独启动，也可以用supervisor启动
 
 
 2 启动gunicorn (通过supervisor启动)
+
+
 
 
 
@@ -39,11 +44,14 @@ echo_supervisord_conf > supervisor.conf # 导出配置模板 (可以自定义路
 启动命令 supervisord -c supervisor.conf
 
 
+
+
 进入shell交互
 
 supervisorctl -c ./supervisord.conf
 
 更多详细信息见  http://www.ttlsa.com/linux/using-supervisor-control-program/
+
 
 
 
@@ -58,7 +66,22 @@ supervisord -c path/supervisor.conf # path是supervisor.conf的路径
 supervisorctl start all #启动所有的程序
 
 
+
+
 开启服务:
+  /etc/init.d/nginx start  配置文件在nginx.conf  路径在上面
+  
+  pkill -f "supervisor" && supervisord -c supervisor.conf 杀死之后开启 supervisord   配置文件在supervisor.conf
+  
+  
+  127.0.0.1:9001 web界面 管理进程  或者进入shell交互 反正爱咋咋的
+  
+  最后访问 127.0.0.1:5001 就可以看到 app的服务了  
+  
+  F12可以发现服务器来自Nginx (如果关闭 nginx,可以发现服务来自 gunicorn)
+  
+  
+  
   
 
 
