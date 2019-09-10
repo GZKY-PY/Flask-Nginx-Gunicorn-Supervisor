@@ -58,6 +58,10 @@ supervisord -c path/supervisor.conf # path是supervisor.conf的路径
 supervisorctl start all #启动所有的程序
 
 
+开启服务:
+  
+
+
 
 
 
