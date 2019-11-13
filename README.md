@@ -55,6 +55,7 @@ echo_supervisord_conf > supervisor.conf # 导出配置模板 (可以自定义路
 supervisorctl -c ./supervisord.conf
 
 更多详细信息见  http://www.ttlsa.com/linux/using-supervisor-control-program/
+开启web界面   https://www.cnblogs.com/xiwang/p/6228909.html
 
 
 
